@@ -1,0 +1,33 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <center>
+        <h1>Delete Audience User</h1>
+    </center>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="d-flex justify-content-around">
+                {% if delete_fail %}
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Couldn't delete the user.</h4>
+                        <p>Check the username and try again.</p>
+                    </div>
+                {% endif %}
+                <form class="form-group" method="POST" novalidate action="{% url 'delete_audience' %}">
+                    <label for="username"><b>Username</b></label>
+                    <input type="text" placeholder="" name="username" required>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Delete User</button>
+                </form>
+            </div>
+        </div>
+    </div>    
+
+<a href="/manager-home">Return to homepage</a>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <center>
+        <h1>Add Movie</h1>
+    </center>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="d-flex justify-content-around">
+                {% if add_fail %}
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Couldn't add the movie.</h4>
+                        <p>Check the information and try again.</p>
+                    </div>
+                {% endif %}
+                <form class="form-group" method="POST" novalidate action="{% url 'add_movie' %}">
+                    <label for="username"><b>Movie ID</b></label>
+                    <input type="text" placeholder="" name="movie_id" required>
+                    <label for="username"><b>Movie Name</b></label>
+                    <input type="text" placeholder="" name="name" required>
+                    <label for="username"><b>Duration</b></label>
+                    <input type="text" placeholder="" name="duration" required>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Add Movie</button>
+                </form>
+            </div>
+        </div>
+    </div>    
+
+<a href="/director-home">Return to homepage</a>
+
+</body>
+</html>

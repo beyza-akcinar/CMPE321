@@ -1,0 +1,53 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <center>
+        <h1>View Audience</h1>
+    </center>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="d-flex justify-content-around">
+                {% if view_fail %}
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Couldn't find audience.</h4>
+                        <p>Check the information and try again.</p>
+                    </div>
+                {% endif %}
+                <form class="form-group" method="POST" novalidate action="{% url 'view_audience' %}">
+                    <label for="username"><b>Movie ID</b></label>
+                    <input type="text" placeholder="" name="movie_id" required>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Show Audience</button>
+                </form>
+            </div>
+        </div>
+    </div>    
+
+
+    {% if movie_data %}
+    <table>
+        <thead>
+          <tr>
+            <th>Movie ID</th>
+            <th>Movie Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for movie in movie_data %}
+          <tr>
+            <td>{{ movie.0 }}</td>
+            <td>{{ movie.1 }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+<a href="/director-home">Return to homepage</a>
+
+</body>
+</html>

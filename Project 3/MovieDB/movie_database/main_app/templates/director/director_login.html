@@ -1,0 +1,33 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <center>
+        <h1>Director Login</h1>
+    </center>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="d-flex justify-content-around">
+            {% if login_fail %}
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Login failed</h4>
+                    <p>Check your username and password and try again.</p>
+                </div>
+            {% endif %}
+            <form class="form-group" method="POST" novalidate action="{% url 'director_login' %}">
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="" name="username" required>
+                <label for="password"><b>Password</b></label>
+                <input type="text" placeholder="" name="password" required>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

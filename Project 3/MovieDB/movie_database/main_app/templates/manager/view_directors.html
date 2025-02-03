@@ -1,0 +1,37 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <center>
+        <h1>All Directors</h1>
+    </center>
+</head>
+<body>
+
+    <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Nation</th>
+            <th>Platform ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for director in directors_data %}
+          <tr>
+            <td>{{ director.0 }}</td>
+            <td>{{ director.1 }}</td>
+            <td>{{ director.2 }}</td>
+            <td>{{ director.3 }}</td>
+            <td>{{ director.4 }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+<a href="/manager-home">Return to homepage</a>
+
+</body>
+</html>
